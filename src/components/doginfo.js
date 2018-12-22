@@ -9,10 +9,7 @@ componentDidMount(){
   fetch(`https://dog.ceo/api/breed/${this.props.changeBreed}/images/random`)
     .then(response=>response.json())
 
-    .then(response=>
-      // this.props.changeImg(response.message)
-      console.log(response)
-    )
+    .then(response=>this.props.changeImg(response.message))
 }
 
 
