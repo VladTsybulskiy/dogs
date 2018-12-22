@@ -23,7 +23,7 @@ export default class AllDogs extends React.Component{
 
               <li className="ListBreedsElement" key={e}>
 
-              <Link to="/info"  onClick={this.ClickToLink}>{e}</Link>
+              <Link to="/info" onClick={this.ClickToLink}>{e}</Link>
 
             </li>)}
           </ul>

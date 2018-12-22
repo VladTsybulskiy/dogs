@@ -27,24 +27,26 @@ class App extends Component {
     return (
 
         <BrowserRouter>
+
           <div className="App">
-          <Switch>
-            <Route exact path="/" render={()=>(
+
               <AllDogs
               breeds={this.props.breeds}
               getOneBreed={this.props.getOneBreed}
               />
-            )}/>
 
-            <Route path="/info" render={()=>(
+            <Switch>
+            <Route  path="/info" render={()=>(
               <DogInfo
               img={this.props.img}
               changeImg={this.props.changeImg}
               changeBreed={this.props.changeBreed}
               />
             )}/>
-          </Switch>
+            </Switch>
+
           </div>
+
         </BrowserRouter>
 
     );
