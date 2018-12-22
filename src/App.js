@@ -1,28 +1,74 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { connect } from "react-redux";
+
+import {BrowserRouter ,Switch,Route} from "react-router-dom"
+import {setAllBreeds,getOneBreed,changeImg} from './actions/actions'
+import AllDogs from './components/alldogs'
+import DogInfo from './components/doginfo'
 
 class App extends Component {
+
+    componentDidMount(){
+
+      fetch("https://dog.ceo/api/breeds/list/all")
+
+            .then(response=>response.json())
+
+            .then( response=>{
+               this.props.setAllBreeds(response.message);
+            });
+
+    }
+
   render() {
+
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+
+        <BrowserRouter>
+          <div className="App">
+          <Switch>
+            <Route exact path="/" render={()=>(
+              <AllDogs
+              breeds={this.props.breeds}
+              getOneBreed={this.props.getOneBreed}
+              />
+            )}/>
+
+            <Route path="/info" render={()=>(
+              <DogInfo
+              img={this.props.img}
+              changeImg={this.props.changeImg}
+              changeBreed={this.props.changeBreed}
+              />
+            )}/>
+          </Switch>
+          </div>
+        </BrowserRouter>
+
     );
   }
 }
 
-export default App;
+const mapStateToProps = store => {
+  return {
+    breeds:store.breeds,
+    changeBreed:store.changeBreed,
+    img:store.img
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setAllBreeds: data=>dispatch(setAllBreeds(data)),
+    getOneBreed:  changeBreed=>dispatch(getOneBreed(changeBreed)),
+    changeImg: img=>dispatch(changeImg(img))
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
+
