@@ -3,20 +3,21 @@ import './App.css';
 import { connect } from "react-redux";
 
 import {BrowserRouter ,Switch,Route} from "react-router-dom"
-import {setAllBreeds,getOneBreed,changeImg} from './actions/actions'
+import {changeLoadingSidebar,changeLoadingImage,setAllBreeds,getOneBreed,changeImg} from './actions/actions'
 import AllDogs from './components/alldogs'
 import DogInfo from './components/doginfo'
 
 class App extends Component {
 
     componentDidMount(){
-
+      this.props.changeLoadingSidebar(true);
       fetch("https://dog.ceo/api/breeds/list/all")
 
             .then(response=>response.json())
 
             .then( response=>{
-               this.props.setAllBreeds(response.message);
+              this.props.changeLoadingSidebar(false);
+              this.props.setAllBreeds(response.message);
             });
 
     }
@@ -30,7 +31,8 @@ class App extends Component {
 
           <div className="App">
 
-              <AllDogs
+            <AllDogs
+              loadingSidebar={this.props.loadingSidebar}
               breeds={this.props.breeds}
               getOneBreed={this.props.getOneBreed}
               />
@@ -38,6 +40,8 @@ class App extends Component {
             <Switch>
             <Route  path="/info" render={()=>(
               <DogInfo
+              changeLoadingImage={this.props.changeLoadingImage}
+              loadingImage={this.props.loadingImage}
               img={this.props.img}
               changeImg={this.props.changeImg}
               changeBreed={this.props.changeBreed}
@@ -55,6 +59,8 @@ class App extends Component {
 
 const mapStateToProps = store => {
   return {
+    loadingSidebar:store.loadingSidebar,
+    loadingImage:store.loadingImage,
     breeds:store.breeds,
     changeBreed:store.changeBreed,
     img:store.img
@@ -63,6 +69,8 @@ const mapStateToProps = store => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    changeLoadingImage:loadingImage=>dispatch(changeLoadingImage(loadingImage)),
+    changeLoadingSidebar:loadingSidebar=>dispatch(changeLoadingSidebar(loadingSidebar)),
     setAllBreeds: data=>dispatch(setAllBreeds(data)),
     getOneBreed:  changeBreed=>dispatch(getOneBreed(changeBreed)),
     changeImg: img=>dispatch(changeImg(img))

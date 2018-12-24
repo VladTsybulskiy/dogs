@@ -16,10 +16,26 @@ export const  getOneBreed=breed=> {
     breed
   }
 }
+
 export const changeImg=img=>{
   const CHANGE_IMG="CHANGE_IMG";
   return{
     type:CHANGE_IMG,
     img
+  }
+}
+export const changeLoadingSidebar=loadingSidebar=>{
+  const CHANGE_LOADING_SIDEBAR="CHANGE_LOADING_SIDEBAR";
+  return{
+    type:CHANGE_LOADING_SIDEBAR,
+    loadingSidebar
+  }
+}
+
+export const changeLoadingImage=loadingImage=>{
+  const CHANGE_LOADING_IMAGE="CHANGE_LOADING_IMAGE";
+  return{
+    type:CHANGE_LOADING_IMAGE,
+    loadingImage
   }
 }
