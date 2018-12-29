@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom'
 
 export default class AllDogs extends React.Component{
 
+
+  ClickToLink=(changedBreed)=>{
+    changedBreed.preventDefault();
+    this.props.getOneBreed(changedBreed.target.innerHTML);
+  }
   render(){
 
     const {breeds}=this.props;
-
-    this.ClickToLink=(e)=>{
-    e.preventDefault();
-    this.props.getOneBreed(e.target.innerHTML);
-    }
     return(
 
           <ul className="ListBreedsContainer">
@@ -21,9 +21,9 @@ export default class AllDogs extends React.Component{
             {this.props.loadingSidebar&&<p>Loading...</p>}
             {this.props.loadingSidebar===false&&Object.keys(breeds).map(e=>
 
-              <li className="ListBreedsElement" key={e}>
+              <li className="ListBreedsElement"  onClick={this.ClickToLink} key={e}>
 
-              <Link  onClick={this.ClickToLink} to="/info" >{e}</Link>
+              <Link to={`/${e}`}>{e}</Link>
 
             </li>)}
           </ul>

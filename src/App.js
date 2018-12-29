@@ -7,8 +7,12 @@ import {changeLoadingSidebar,changeLoadingImage,setAllBreeds,getOneBreed,changeI
 import AllDogs from './components/alldogs'
 import DogInfo from './components/doginfo'
 
-class App extends Component {
+ class App extends Component {
 
+constructor(props){
+  super(props)
+  console.log(props);
+}
     componentDidMount(){
       this.props.changeLoadingSidebar(true);
       fetch("https://dog.ceo/api/breeds/list/all")
@@ -38,7 +42,7 @@ class App extends Component {
               />
 
             <Switch>
-            <Route  path="/info" render={()=>(
+            <Route  path={`/:${this.props.changeBreed}`} render={()=>(
               <DogInfo
               changeLoadingImage={this.props.changeLoadingImage}
               loadingImage={this.props.loadingImage}

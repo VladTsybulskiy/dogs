@@ -1,9 +1,9 @@
 export const initialState={
   loadingSidebar:false,
   loadingImage:false,
-  breeds:" ",
-  changeBreed:" ",
-  img:" "
+  breeds:"",
+  changeBreed:"",
+  img:""
 }
 
 export const rootReducer=(state=initialState,action)=>{
