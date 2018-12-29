@@ -8,11 +8,7 @@ import AllDogs from './components/alldogs'
 import DogInfo from './components/doginfo'
 
  class App extends Component {
-
-constructor(props){
-  super(props)
-  console.log(props);
-}
+  
     componentDidMount(){
       this.props.changeLoadingSidebar(true);
       fetch("https://dog.ceo/api/breeds/list/all")
