@@ -23,7 +23,7 @@ import DogInfo from './components/doginfo'
     }
 
   render() {
-
+console.log(this.props);
 
     return (
 

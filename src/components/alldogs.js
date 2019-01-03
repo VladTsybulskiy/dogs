@@ -10,7 +10,7 @@ export default class AllDogs extends React.Component{
     this.props.getOneBreed(changedBreed.target.innerHTML);
   }
   render(){
-
+    console.log(this.props);
     const {breeds}=this.props;
     return(
 

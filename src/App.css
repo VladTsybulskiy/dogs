@@ -1,19 +1,24 @@
 .App{
-  display: flex;
+  display: inline-flex;
   justify-content: flex-start;
 }
+
 .ListBreedsContainer{
   display:inline-flex;
-flex-direction: column;
+  flex-direction: column;
   background-color: azure;
   border-right: black solid 2px;
+  flex-grow: 1;
 }
+
 .ListBreedsElement{
   flex:1 auto;
+
 }
 
 .OneDogInfo{
+  position:fixed;
   display:flex;
   flex-direction: column;
-
+margin-left: 20%;
 }

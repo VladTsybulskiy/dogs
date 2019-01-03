@@ -9,10 +9,24 @@ componentDidMount(){
   fetch(`https://dog.ceo/api/breed/${this.props.changeBreed}/images/random`)
     .then(response=>response.json())
     .then(response=> {
+
       this.props.changeImg(response.message)
       this.props.changeLoadingImage(false);
     }
 )}
+
+componentWillReceiveProps(nextProps){
+  if(this.props.changeBreed!==nextProps.changeBreed){
+  this.props.changeLoadingImage(true);
+  fetch(`https://dog.ceo/api/breed/${this.props.changeBreed}/images/random`)
+    .then(response=>response.json())
+    .then(response=> {
+
+        this.props.changeImg(response.message)
+        this.props.changeLoadingImage(false);
+      }
+    )}
+}
 
 
 
