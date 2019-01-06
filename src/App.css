@@ -2,6 +2,9 @@
   display: inline-flex;
   justify-content: flex-start;
 }
+li {
+  list-style-type: none;
+}
 
 .ListBreedsContainer{
   display:inline-flex;

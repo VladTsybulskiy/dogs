@@ -1,16 +1,29 @@
 import React from "react"
 import { Link } from 'react-router-dom'
+import connect from 'react-redux/es/connect/connect'
+import {changeLoadingSidebar,setAllBreeds,getOneBreed} from '../actions/actions'
 
 
-export default class AllDogs extends React.Component{
+export  class AllDogs extends React.Component{
 
+  componentDidMount(){
+    this.props.changeLoadingSidebar(true);
+    fetch("https://dog.ceo/api/breeds/list/all")
+
+      .then(response=>response.json())
+
+      .then( response=>{
+        this.props.changeLoadingSidebar(false);
+        this.props.setAllBreeds(response.message);
+      });
+
+  }
 
   ClickToLink=(changedBreed)=>{
     changedBreed.preventDefault();
     this.props.getOneBreed(changedBreed.target.innerHTML);
   }
   render(){
-    // console.log(this.props);
     const {breeds}=this.props;
     return(
 
@@ -28,11 +41,28 @@ export default class AllDogs extends React.Component{
             </li>)}
           </ul>
 
-
-
-
-
     )
 
   }
 }
+
+const mapStateToProps=store=>{
+  return{
+    loadingSidebar:store.loadingSidebar,
+    breeds:store.breeds,
+    changeBreed:store.changeBreed
+  }
+}
+
+const mapDispatchToProps=dispatch=>{
+  return{
+    changeLoadingSidebar:loadingSidebar=>dispatch(changeLoadingSidebar(loadingSidebar)),
+    setAllBreeds: allBreeds=>dispatch(setAllBreeds(allBreeds)),
+    getOneBreed:  oneBreed=>dispatch(getOneBreed(oneBreed))
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AllDogs);

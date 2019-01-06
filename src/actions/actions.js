@@ -8,7 +8,7 @@ export const setAllBreeds=data=>{
   }
 }
 
-export const  getOneBreed=breed=> {
+export const getOneBreed=breed=> {
   const GET_BREED = "GET_BREED";
 
   return {
