@@ -1,4 +1,4 @@
-.App{
+.App {
   display: inline-flex;
   justify-content: flex-start;
 }
@@ -6,22 +6,21 @@ li {
   list-style-type: none;
 }
 
-.ListBreedsContainer{
-  display:inline-flex;
+.ListBreedsContainer {
+  display: inline-flex;
   flex-direction: column;
   background-color: azure;
   border-right: black solid 2px;
   flex-grow: 1;
 }
 
-.ListBreedsElement{
-  flex:1 auto;
-
+.ListBreedsElement {
+  flex: 1 auto;
 }
 
-.OneDogInfo{
-  position:fixed;
-  display:flex;
+.OneDogInfo {
+  position: fixed;
+  display: flex;
   flex-direction: column;
-margin-left: 20%;
+  margin-left: 20%;
 }
