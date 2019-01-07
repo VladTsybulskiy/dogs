@@ -8,10 +8,10 @@ import {
 } from '../actions/actions'
 
 class DogInfo extends React.Component {
-  state = {
-    loading: true,
-    image: '',
-  }
+  // state = {
+  //   loading: true,
+  //   image: '',
+  // }
 
   componentDidMount() {
     this.props.changeLoadingImage(true)
@@ -21,42 +21,22 @@ class DogInfo extends React.Component {
       .then(response => response.json())
       .then(response => {
         this.props.changeLoadingImage(false)
-        return {
-          image: response.message,
-        }
+        this.props.changeImg(response.message)
       })
-    console.log(this.state.image)
   }
-
-  // componentWillReceiveProps(nextProps){
-  //   if(this.props.changeBreed!==nextProps.changeBreed){
-  //   this.props.changeLoadingImage(true);
-  //   fetch(`https://dog.ceo/api/breed/${this.props.match.params.breed}/images/random`)
-  //     .then(response=>response.json())
-  //     .then(response=> {
-  //
-  //         this.props.changeImg(response.message)
-  //         this.props.changeLoadingImage(false);
-  //       }
-  //     )}
-  // }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.changeBreed !== prevState.changeBreed) {
-      const img = fetch(
+  componentDidUpdate(prevProps) {
+    if (prevProps.changeBreed !== this.props.changeBreed) {
+      fetch(
         `https://dog.ceo/api/breed/${
-          nextProps.match.params.breed
+          this.props.match.params.breed
         }/images/random`
       )
         .then(response => response.json())
         .then(response => {
-          return response.message
+          this.props.changeLoadingImage(false)
+          this.props.changeImg(response.message)
         })
-      return {
-        image: img,
-        loading: false,
-      }
-    } else return null
+    }
   }
 
   render() {
@@ -64,8 +44,8 @@ class DogInfo extends React.Component {
       <div className="OneDogInfo">
         Breed: {this.props.changeBreed}
         {this.props.loadingImage && <p>Loading...</p>}
-        {!this.state.loading && (
-          <img src={this.state.image} alt={this.props.changeBreed} />
+        {!this.props.loadingImage && (
+          <img src={this.props.img} alt={this.props.changeBreed} />
         )}
       </div>
     )

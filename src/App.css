@@ -23,4 +23,5 @@ li {
   display: flex;
   flex-direction: column;
   margin-left: 20%;
+  flex-basis: auto;
 }
