@@ -38,7 +38,9 @@ class DogInfo extends React.Component {
         })
     }
   }
-
+  MoveDogInfo = e => {
+    e.preventDefault()
+  }
   render() {
     return (
       <div className="OneDogInfo">
