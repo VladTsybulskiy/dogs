@@ -14,7 +14,7 @@ li {
   flex-direction: column;
   background-color: azure;
   border-right: black solid 2px;
-  flex-grow: 1;
+  min-width: 130px;
 }
 
 .ListBreedsElement {
@@ -25,5 +25,7 @@ li {
   display: flex;
   flex-direction: column;
   margin-left: 5%;
-  flex-basis: auto;
+}
+img {
+  width: 100%;
 }

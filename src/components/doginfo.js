@@ -8,11 +8,6 @@ import {
 } from '../actions/actions'
 
 class DogInfo extends React.Component {
-  // state = {
-  //   loading: true,
-  //   image: '',
-  // }
-
   componentDidMount() {
     this.props.changeLoadingImage(true)
     fetch(
@@ -38,9 +33,7 @@ class DogInfo extends React.Component {
         })
     }
   }
-  MoveDogInfo = e => {
-    e.preventDefault()
-  }
+
   render() {
     return (
       <div className="OneDogInfo">
